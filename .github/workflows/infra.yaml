@@ -1,0 +1,19 @@
+name: Infrastructure Provisioning
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'infra/**'
+
+jobs:
+  provision-infrastructure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Provision Infrastructure
+        run: |
+          # Add your infrastructure provisioning commands here
+          # For example, you could use Terraform, AWS CloudFormation, or other IaC tools
+          echo "Provisioning infrastructure..."
