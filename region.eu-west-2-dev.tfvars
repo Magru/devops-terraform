@@ -1,4 +1,5 @@
 env = "dev"
 region = "eu-west-2"
+aim="ami-01e444924a2233b07"
 app_server_instance_type = "t2.nano"
 security_group_name="tf-security-group"

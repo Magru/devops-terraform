@@ -11,6 +11,12 @@ terraform {
     }
   }
 
+  backend "s3" {
+    bucket = "max-tf-backend"
+    key    = "tfstate.json"
+    region = "eu-west-2"
+  }
+
   required_version = ">= 1.2.0"
 }
 
@@ -20,8 +26,7 @@ terraform {
  You can use multiple provider blocks in your Terraform configuration to manage resources from different providers.
 */
 provider "aws" {
-  region  = "eu-west-2"
-  profile = "931"
+  region  = var.region
 }
 
 
@@ -35,13 +40,11 @@ provider "aws" {
  For full description of this resource: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance
 */
 resource "aws_instance" "app_server" {
-  ami           = "ami-053a617c6207ecc7b"
-  instance_type = "t2.micro"
-
-  user_data = file("./deploy.sh")
+  ami           = var.aim
+  instance_type = var.app_server_instance_type
 
   tags = {
-    Name = "<instance-name>"
+    Name = "max-tf-${var.env}"
     Terraform = "true"
   }
 }

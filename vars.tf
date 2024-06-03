@@ -4,6 +4,11 @@ variable "env" {
   default     = "dev"
 }
 
+variable "aim" {
+  description = "AIM Name"
+  type        = string
+}
+
 variable "region" {
   description = "Deployment region"
   type        = string
